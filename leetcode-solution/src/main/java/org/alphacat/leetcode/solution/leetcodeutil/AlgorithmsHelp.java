@@ -7,10 +7,17 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
- * https://leetcode-cn.com/problems/find-the-duplicate-number/
- * 287. 寻找重复数
+ * https://leetcode-cn.com/problems/basic-calculator/
+ * 224. 基本计算器
  * ☆☆☆☆
- * 二分查找
+ * keyword:数学，计算器，逆波兰表达式
+ * 题解：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 相关题目：
+ * 150. 逆波兰表达式求值
+ * {@link  org.alphacat.leetcode.solution.mid.no1to1000.No150_evalRPN}
+ *
+ * ————————————————————————————————————————————————————————————————————————————
  */
 public class AlgorithmsHelp {
 
@@ -66,5 +73,9 @@ public class AlgorithmsHelp {
             i++;
             j--;
         }
+    }
+
+    private String[] ListToStringArr(List<String> list){
+        return list.toArray(new String[list.size()]);
     }
 }
