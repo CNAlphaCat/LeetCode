@@ -1,8 +1,8 @@
-package org.alphacat.leetcode.solution.easy.no301to400;
+package org.alphacat.leetcode.solution.classic.dfs;
 
 import java.util.List;
 
-public class No339 {
+public class No339_depthSum {
 	public int depthSum(List<NestedInteger> nestedList) {
 		int res = depthSum(nestedList, 1);
 		return res;

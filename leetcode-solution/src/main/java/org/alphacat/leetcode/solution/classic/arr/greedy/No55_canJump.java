@@ -3,7 +3,10 @@ package org.alphacat.leetcode.solution.classic.arr.greedy;
 /**
  * https://leetcode-cn.com/problems/jump-game/
  * 55. 跳跃游戏
- * ☆☆☆☆
+ * ————————————————————————————————————————————————————————————————————————————
+ * 题目描述：
+ *
+ * ————————————————————————————————————————————————————————————————————————————
  * keyword:数组，贪心
  * 题解：https://leetcode-cn.com/problems/jump-game/solution/55-by-ikaruga/
  */

@@ -1,11 +1,8 @@
-package org.alphacat.leetcode.solution.classic.listnode;
-
-
-import org.alphacat.leetcode.datastructure.ListNode;
+package org.alphacat.leetcode.solution.classic.integer;
 
 /**
- * https://leetcode-cn.com/problems/add-two-numbers/
- * 2. 两数相加
+ * https://leetcode-cn.com/problems/monotone-increasing-digits/
+ * 738. 单调递增的数字
  * ————————————————————————————————————————————————————————————————————————————
  * 题目描述：
  * ————————————————————————————————————————————————————————————————————————————
@@ -17,33 +14,28 @@ import org.alphacat.leetcode.datastructure.ListNode;
  * 相关题目：
  * ————————————————————————————————————————————————————————————————————————————
  */
-public class No2 {
+public class No738_monotoneIncreasingDigits {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public int monotoneIncreasingDigits(int N) {
+        String num = String.valueOf(N);
+        char[] numChars = num.toCharArray();
 
-        ListNode l = new ListNode(0);
-        ListNode crr = l;
+        int index = 0;
 
-        int j = 0;
-
-        while (l1 != null || l2 != null || j != 0) {
-
-            int x = (l1 != null) ? l1.val : 0;
-            int y = (l2 != null) ? l2.val : 0;
-
-            int sum = x + y + j;
-            int n = sum % 10;
-            j = sum / 10;
-
-            crr.next = new ListNode(n);
-            crr = crr.next;
-            if (l1 != null) {
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                l2 = l2.next;
-            }
+        while (index + 1 < num.length() && numChars[index] <= numChars[index + 1]) {
+            ++index;
         }
-        return l.next;
+
+        while (index >= 0 && index + 1 < num.length() && numChars[index] > numChars[index + 1]) {
+            --numChars[index];
+            --index;
+        }
+
+        for (int i = index + 2; i < num.length(); i++) {
+            numChars[i] = '9';
+        }
+
+        num = String.valueOf(numChars);
+        return Integer.parseInt(num);
     }
 }

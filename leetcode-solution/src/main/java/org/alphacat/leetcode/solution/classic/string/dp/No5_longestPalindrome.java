@@ -1,5 +1,19 @@
-package org.alphacat.leetcode.solution.classic.string;
+package org.alphacat.leetcode.solution.classic.string.dp;
 
+/**
+ * https://leetcode-cn.com/problems/longest-palindromic-substring/
+ * 5. 最长回文子串
+ * ————————————————————————————————————————————————————————————————————————————
+ * 题目描述：
+ * ————————————————————————————————————————————————————————————————————————————
+ * keyword:
+ * 题解：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 笔记：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 相关题目：
+ * ————————————————————————————————————————————————————————————————————————————
+ */
 public class No5_longestPalindrome {
 
     private String s;
@@ -54,7 +68,9 @@ public class No5_longestPalindrome {
             dp[i][i] = true;
         }
         int begin = 0;
-        int maxLength = 1;// 如果取0，"ab"就只会返回空字符串
+
+        // 如果取0，"ab"就只会返回空字符串
+        int maxLength = 1;
         for (int j = 1; j < n; j++) {
             for (int i = 0; i < j; i++) {
                 if (chars[i] != chars[j]) {

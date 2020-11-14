@@ -1,11 +1,8 @@
-package org.alphacat.leetcode.solution.classic.listnode;
-
-
-import org.alphacat.leetcode.datastructure.ListNode;
+package org.alphacat.leetcode.solution.classic.binarysearch;
 
 /**
- * https://leetcode-cn.com/problems/add-two-numbers/
- * 2. 两数相加
+ * https://leetcode-cn.com/problems/find-the-smallest-divisor-given-a-threshold/
+ * 1283. 使结果不超过阈值的最小除数
  * ————————————————————————————————————————————————————————————————————————————
  * 题目描述：
  * ————————————————————————————————————————————————————————————————————————————
@@ -17,33 +14,37 @@ import org.alphacat.leetcode.datastructure.ListNode;
  * 相关题目：
  * ————————————————————————————————————————————————————————————————————————————
  */
-public class No2 {
+public class No1283_smallestDivisor {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int l = 1;
+        int h = findMax(nums);
 
-        ListNode l = new ListNode(0);
-        ListNode crr = l;
+        int ans = -1;
 
-        int j = 0;
+        while (l <= h) {
+            int divideNum = l + ((h - l) >> 1);
 
-        while (l1 != null || l2 != null || j != 0) {
-
-            int x = (l1 != null) ? l1.val : 0;
-            int y = (l2 != null) ? l2.val : 0;
-
-            int sum = x + y + j;
-            int n = sum % 10;
-            j = sum / 10;
-
-            crr.next = new ListNode(n);
-            crr = crr.next;
-            if (l1 != null) {
-                l1 = l1.next;
+            int sum = 0;
+            for (int num : nums) {
+                sum += (num - 1) / divideNum + 1;
             }
-            if (l2 != null) {
-                l2 = l2.next;
+
+            if (sum <= threshold) {
+                ans = divideNum;
+                h = divideNum - 1;
+            } else {
+                l = divideNum + 1;
             }
         }
-        return l.next;
+        return ans;
+    }
+
+    private int findMax(int[] nums) {
+        int max = nums[0];
+        for (int i = 1; i < nums.length; ++i) {
+            max = Math.max(nums[i], max);
+        }
+        return max;
     }
 }

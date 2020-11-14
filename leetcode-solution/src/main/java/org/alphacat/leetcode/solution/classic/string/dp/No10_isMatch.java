@@ -1,5 +1,18 @@
 package org.alphacat.leetcode.solution.classic.string.dp;
 
+/**
+ * https://leetcode-cn.com/problems/regular-expression-matching/
+ * 10. 正则表达式匹配
+ * ☆☆☆☆
+ * keyword:dp，正则，字符串匹配
+ * 题解：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 相关题目：
+ * 剑指 Offer 19. 正则表达式匹配
+ * {@link  org.alphacat.leetcode.solution.hard.Offer19}
+ *
+ * ————————————————————————————————————————————————————————————————————————————
+ */
 public class No10_isMatch {
 
     private final static char STAR = '*';

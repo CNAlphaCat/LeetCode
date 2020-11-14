@@ -3,11 +3,14 @@ package org.alphacat.leetcode.solution.classic.listnode;
 
 import org.alphacat.leetcode.datastructure.ListNode;
 
+import java.util.HashSet;
+
 /**
- * https://leetcode-cn.com/problems/add-two-numbers/
- * 2. 两数相加
+ * https://leetcode-cn.com/problems/intersection-of-two-linked-lists/
+ * 160. 相交链表
  * ————————————————————————————————————————————————————————————————————————————
  * 题目描述：
+ * 编写一个程序，找到两个单链表相交的起始节点。
  * ————————————————————————————————————————————————————————————————————————————
  * keyword:
  * 题解：
@@ -17,33 +20,32 @@ import org.alphacat.leetcode.datastructure.ListNode;
  * 相关题目：
  * ————————————————————————————————————————————————————————————————————————————
  */
-public class No2 {
+public class No160_getIntersectionNode {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+		if (headA == null || headB == null) {
+			return null;
+		}
+		ListNode pA = headA, pB = headB;
+		while (pA != pB) {
+			pA = pA == null ? headB : pA.next;
+			pB = pB == null ? headA : pB.next;
+		}
+		return pA;
+	}
 
-        ListNode l = new ListNode(0);
-        ListNode crr = l;
-
-        int j = 0;
-
-        while (l1 != null || l2 != null || j != 0) {
-
-            int x = (l1 != null) ? l1.val : 0;
-            int y = (l2 != null) ? l2.val : 0;
-
-            int sum = x + y + j;
-            int n = sum % 10;
-            j = sum / 10;
-
-            crr.next = new ListNode(n);
-            crr = crr.next;
-            if (l1 != null) {
-                l1 = l1.next;
-            }
-            if (l2 != null) {
-                l2 = l2.next;
-            }
-        }
-        return l.next;
-    }
+	public ListNode getIntersectionNode_2(ListNode headA, ListNode headB) {
+		HashSet<ListNode> set = new HashSet<ListNode>();
+		while (headA != null) {
+			set.add(headA);
+			headA = headA.next;
+		}
+		while (headB != null) {
+			if (set.contains(headB)) {
+				return headB;
+			}
+			headB = headB.next;
+		}
+		return null;
+	}
 }

@@ -1,8 +1,19 @@
-package org.alphacat.leetcode.solution.classic.arr;
+package org.alphacat.leetcode.solution.classic.arr.hashmap;
 
 import java.util.*;
 
-public class No1 {
+/**
+ * https://leetcode-cn.com/problems/two-sum/
+ * 1. 两数之和
+ * keyword:数组，哈希表
+ * 题解：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 笔记：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 相关题目：
+ * ————————————————————————————————————————————————————————————————————————————
+ */
+public class No1_twoSum {
 
     public int[] twoSum(int[] nums, int target) {
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -56,7 +67,9 @@ public class No1 {
         int n = nums.length;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (i == j) continue;
+                if (i == j){
+                    continue;
+                }
                 if (nums[i] + nums[j] == target) {
                     arr[0] = i;
                     arr[1] = j;
