@@ -3,7 +3,21 @@ package org.alphacat.leetcode.solution.mid.no1to1000;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class No116 {
+/**
+ * https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/
+ * 116. 填充每个节点的下一个右侧节点指针
+ * ————————————————————————————————————————————————————————————————————————————
+ * 题目描述：
+ * ————————————————————————————————————————————————————————————————————————————
+ * keyword:
+ * 题解：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 笔记：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 相关题目：
+ * ————————————————————————————————————————————————————————————————————————————
+ */
+public class No116_connect {
 
     public Node connect(Node root) {
         if (root == null) {

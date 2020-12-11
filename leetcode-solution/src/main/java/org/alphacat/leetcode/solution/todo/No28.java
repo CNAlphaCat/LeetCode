@@ -1,6 +1,10 @@
 package org.alphacat.leetcode.solution.todo;
 
+
 public class No28 {
+
+    //使用Sunday算法
+
     public int strStr(String haystack, String needle) {
         if (needle == null) {
             return 0;
@@ -31,7 +35,9 @@ public class No28 {
                 j++;
             }
         }
-        if (j == m && i <= n) return true;
+        if (j == m && i <= n){
+            return true;
+        }
         return false;
     }
 }

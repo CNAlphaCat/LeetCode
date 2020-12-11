@@ -6,42 +6,37 @@ import org.alphacat.leetcode.datastructure.ListNode;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+/**
+ * https://leetcode-cn.com/problems/merge-k-sorted-lists/
+ * 23. 合并K个升序链表
+ * ————————————————————————————————————————————————————————————————————————————
+ * 题目描述：
+ * ————————————————————————————————————————————————————————————————————————————
+ * keyword:
+ * 题解：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 笔记：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 相关题目：
+ * ————————————————————————————————————————————————————————————————————————————
+ */
 public class No23_mergeKLists {
 
     public ListNode mergeKLists(ListNode[] lists) {
-        Queue<Integer> queue = new PriorityQueue<>();
-        for (ListNode listNode : lists) {
-            while (listNode != null) {
-                queue.offer(listNode.val);
-                listNode = listNode.next;
-            }
-        }
-        ListNode head = new ListNode(0);
-        ListNode current = head;
-        while (!queue.isEmpty()) {
-            int val = queue.poll();
-            ListNode currentNode = new ListNode(val);
-            current.next = currentNode;
-            current = currentNode;
-        }
-        return head.next;
-    }
-
-    public ListNode mergeKLists_2(ListNode[] lists) {
         int n = lists.length;
         if (n == 0) {
             return null;
         }
-        return mergeKLists(lists, 0, n);
+        return mergeKLists(lists, 0, n - 1);
     }
 
     private ListNode mergeKLists(ListNode[] lists, int low, int high) {
-        if (low == high - 1) {
+        if (low == high) {
             return lists[low];
         }
         int mid = low + ((high - low) >> 1);
         ListNode l1 = mergeKLists(lists, low, mid);
-        ListNode l2 = mergeKLists(lists, mid, high);
+        ListNode l2 = mergeKLists(lists, mid + 1, high);
         return mergeListNode(l1, l2);
     }
 

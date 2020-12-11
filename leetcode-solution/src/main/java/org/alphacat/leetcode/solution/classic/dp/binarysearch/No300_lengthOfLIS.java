@@ -8,8 +8,16 @@ import java.util.List;
 /**
  * https://leetcode-cn.com/problems/longest-increasing-subsequence/
  * 300. 最长上升子序列
- * ☆☆☆☆
- * 二分查找
+ * ————————————————————————————————————————————————————————————————————————————
+ * 题目描述：
+ * ————————————————————————————————————————————————————————————————————————————
+ * keyword:二分查找
+ * 题解：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 笔记：
+ * ————————————————————————————————————————————————————————————————————————————
+ * 相关题目：
+ * ————————————————————————————————————————————————————————————————————————————
  */
 public class No300_lengthOfLIS implements LeetCodeTest_1<int[], Integer> {
 
@@ -65,13 +73,12 @@ public class No300_lengthOfLIS implements LeetCodeTest_1<int[], Integer> {
         dp[0] = 1;
         int ans = 1;
         for (int j = 1; j < n; ++j) {
-            int max = 0;
+            dp[j] = 1;
             for (int i = 0; i < j; ++i) {
                 if (nums[j] > nums[i]) {
-                    max = Math.max(max, dp[i]);
+                    dp[j] = Math.max(dp[j], dp[i] + 1);
                 }
             }
-            dp[j] = max + 1;
             ans = Math.max(ans, dp[j]);
         }
         return ans;
@@ -80,7 +87,7 @@ public class No300_lengthOfLIS implements LeetCodeTest_1<int[], Integer> {
     @Override
     public List<String[]> getOriginalCase() {
         List<String[]> list = new LinkedList<>();
-        addToList(list,"[4,10,4,3,8,9]","3");
+        addToList(list, "[4,10,4,3,8,9]", "3");
         return list;
     }
 

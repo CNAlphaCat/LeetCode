@@ -1,11 +1,11 @@
-package org.alphacat.leetcode.solution.classic.listnode;
+package org.alphacat.leetcode.solution.easy.no1to100;
 
 
 import org.alphacat.leetcode.datastructure.ListNode;
 
 /**
- * https://leetcode-cn.com/problems/add-two-numbers/
- * 2. 两数相加
+ * https://leetcode-cn.com/problems/merge-two-sorted-lists/
+ * 21. 合并两个有序链表
  * ————————————————————————————————————————————————————————————————————————————
  * 题目描述：
  * ————————————————————————————————————————————————————————————————————————————
@@ -17,33 +17,31 @@ import org.alphacat.leetcode.datastructure.ListNode;
  * 相关题目：
  * ————————————————————————————————————————————————————————————————————————————
  */
-public class No2 {
+public class No21_mergeTwoLists {
 
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
-        ListNode l = new ListNode(0);
-        ListNode crr = l;
-
-        int j = 0;
-
-        while (l1 != null || l2 != null || j != 0) {
-
-            int x = (l1 != null) ? l1.val : 0;
-            int y = (l2 != null) ? l2.val : 0;
-
-            int sum = x + y + j;
-            int n = sum % 10;
-            j = sum / 10;
-
-            crr.next = new ListNode(n);
-            crr = crr.next;
-            if (l1 != null) {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode preRes = new ListNode(-1);
+        ListNode p = preRes;
+        while (l1 != null && l2 != null) {
+            if (l1.val < l2.val) {
+                p.next = new ListNode(l1.val);
                 l1 = l1.next;
-            }
-            if (l2 != null) {
+            } else {
+                p.next = new ListNode(l2.val);
                 l2 = l2.next;
             }
+            p = p.next;
         }
-        return l.next;
+        while (l1 != null) {
+            p.next = new ListNode(l1.val);
+            p = p.next;
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            p.next = new ListNode(l2.val);
+            p = p.next;
+            l2 = l2.next;
+        }
+        return preRes.next;
     }
 }

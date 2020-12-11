@@ -21,8 +21,10 @@ public class No127_ladderLength {
                 isExist = true;
             }
             for (int i = 0; i < length; ++i) {
-                String alternateWord = word.substring(0, i) + alternateSign + word.substring(i + 1, length);
-                List<String> tempList = transitionMap.getOrDefault(alternateWord, new LinkedList<>());
+                String alternateWord = word.substring(0, i) + alternateSign
+                        + word.substring(i + 1, length);
+                List<String> tempList = transitionMap
+                        .getOrDefault(alternateWord, new LinkedList<>());
                 tempList.add(word);
                 transitionMap.put(alternateWord, tempList);
             }

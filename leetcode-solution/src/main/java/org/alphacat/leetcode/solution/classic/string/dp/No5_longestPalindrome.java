@@ -76,6 +76,9 @@ public class No5_longestPalindrome {
                 if (chars[i] != chars[j]) {
                     continue;
                 }
+
+                //以下为chars[i] == chars[j]的情况
+
                 if (j - i < 3) {
                     dp[i][j] = true;
                 } else {
@@ -112,14 +115,20 @@ public class No5_longestPalindrome {
     public boolean isPalindrome(String s) {
         int len = s.length();
         for (int i = 0; i < len / 2; i++) {
-            if (s.charAt(i) != s.charAt(len - i - 1)) return false;
+            if (s.charAt(i) != s.charAt(len - i - 1)){
+                return false;
+            }
         }
         return true;
     }
 
     public boolean isPalindrome_recursion(String s, int i, int j) {
-        if (j - i <= 0) return true;
-        if (s.charAt(i) != s.charAt(j)) return false;
+        if (j - i <= 0){
+            return true;
+        }
+        if (s.charAt(i) != s.charAt(j)){
+            return false;
+        }
         return isPalindrome_recursion(s, i + 1, j - 1);
     }
 

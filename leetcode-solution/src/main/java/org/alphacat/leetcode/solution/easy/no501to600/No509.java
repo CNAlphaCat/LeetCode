@@ -3,12 +3,22 @@ package org.alphacat.leetcode.solution.easy.no501to600;
 public class No509 {
 
     public int fib(int N) {
-        int[] fib = new int[31];
-        fib[0] = 0;
-        fib[1] = 1;
-        for (int i = 2; i <= N; i++) {
-            fib[i] = fib[i - 1] + fib[i - 2];
+        if (N <= 1) {
+            return N;
         }
-        return fib[N];
+        if (N == 2) {
+            return 1;
+        }
+
+        int a = 1;
+        int b = 1;
+        int cur = 0;
+
+        for (int i = 3; i <= N; i++) {
+            cur = a + b;
+            b = a;
+            a = cur;
+        }
+        return cur;
     }
 }

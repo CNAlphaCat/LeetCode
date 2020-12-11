@@ -1,10 +1,20 @@
-package org.alphacat.leetcode.solution.classic.arr;
+package org.alphacat.leetcode.solution.classic.tree;
+
+
+import org.alphacat.leetcode.datastructure.TreeNode;
+
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
- * https://leetcode-cn.com/problems/product-of-array-except-self/
- * 238. 除自身以外数组的乘积
+ * https://leetcode-cn.com/problems/path-sum-ii/
+ * 113. 路径总和 II
  * ————————————————————————————————————————————————————————————————————————————
  * 题目描述：
+ * 给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。
+ *
+ * 说明: 叶子节点是指没有子节点的节点。
  * ————————————————————————————————————————————————————————————————————————————
  * keyword:
  * 题解：
@@ -14,41 +24,38 @@ package org.alphacat.leetcode.solution.classic.arr;
  * 相关题目：
  * ————————————————————————————————————————————————————————————————————————————
  */
-public class No238 {
+public class No113_pathSum {
+    private List<List<Integer>> res;
+    private List<Integer> list;
 
-    public int[] productExceptSelf(int[] nums) {
-        int n = nums.length;
-        int[] L = new int[n];
-        int[] R = new int[n];
-        L[0] = 1;
-        R[n - 1] = 1;
-        for (int i = 1; i < n; ++i) {
-
-            L[i] = L[i - 1] * nums[i - 1];
-
-            //对官方题解的一个优化，用不着遍历三次
-            R[n - i - 1] = R[n - i] * nums[n - i];
-        }
-        int[] res = new int[n];
-        for (int i = 0; i < n; ++i) {
-            res[i] = L[i] * R[i];
-        }
+    public List<List<Integer>> pathSum(TreeNode root, int sum) {
+        initial();
+        getPathSum(root, sum);
         return res;
     }
 
-    //优化辅助空间至O(1)
-    public int[] productExceptSelf_2(int[] nums) {
-        int n = nums.length;
-        int[] res = new int[n];
-        int r = 1;
-        res[0] = 1;
-        for (int i = 1; i < n; i++) {
-            res[i] = res[i - 1] * nums[i - 1];
+    private void getPathSum(TreeNode node, int crrSum) {
+        if (node == null) {
+            return;
         }
-        for (int i = n - 1; i >= 0; --i) {
-            res[i] *= r;
-            r *= nums[i];
+        int val = node.val;
+        crrSum -= val;
+        list.add(val);
+        if (crrSum == 0 && node.left == null && node.right == null) {
+            List<Integer> temp = new LinkedList<Integer>(list);
+            res.add(temp);
+        } else {
+            getPathSum(node.left, crrSum);
+            getPathSum(node.right, crrSum);
         }
-        return res;
+        int n = list.size();
+        if (n > 0) {
+            list.remove(n - 1);
+        }
+    }
+
+    private void initial() {
+        res = new LinkedList<List<Integer>>();
+        list = new LinkedList<Integer>();
     }
 }

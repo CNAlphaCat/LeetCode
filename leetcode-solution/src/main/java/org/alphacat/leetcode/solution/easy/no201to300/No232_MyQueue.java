@@ -2,10 +2,14 @@ package org.alphacat.leetcode.solution.easy.no201to300;
 
 import java.util.Stack;
 
-public class No232 {
+public class No232_MyQueue {
+
     class MyQueue {
-        Stack<Integer> outputStack;
-        Stack<Integer> storageStack;
+
+        private Stack<Integer> outputStack;
+        private Stack<Integer> storageStack;
+        private Integer peek;
+
 
         /**
          * Initialize your data structure here.
@@ -19,9 +23,8 @@ public class No232 {
          * Push element x to the back of queue.
          */
         public void push(int x) {
-            while (!outputStack.isEmpty()) {
-                int num = outputStack.pop();
-                storageStack.add(num);
+            if (storageStack.isEmpty()) {
+                peek = x;
             }
             storageStack.add(x);
         }
@@ -44,12 +47,8 @@ public class No232 {
          * Get the front element.
          */
         public int peek() {
-            if (!outputStack.isEmpty()) {
-                return outputStack.peek();
-            }
-            while (!storageStack.isEmpty()) {
-                int num = storageStack.pop();
-                outputStack.add(num);
+            if (outputStack.isEmpty()) {
+                return peek;
             }
             return outputStack.peek();
         }

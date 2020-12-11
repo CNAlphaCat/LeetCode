@@ -1,27 +1,29 @@
-package org.alphacat.leetcode.solution.classic.integer;
+package org.alphacat.leetcode.solution.classic.maths;
 
 /**
- * https://leetcode-cn.com/problems/monotone-increasing-digits/
- * 738. 单调递增的数字
+ * https://leetcode-cn.com/problems/palindrome-number/
+ * 9. 回文数
  * ————————————————————————————————————————————————————————————————————————————
  * 题目描述：
- * 给定一个非负整数 N，找出小于或等于 N 的最大的整数，同时这个整数需要满足其各个位数上的数字是单调递增。
- *
- * （当且仅当每个相邻位数上的数字 x 和 y 满足 x <= y 时，我们称这个整数是单调递增的。）
+ * 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
  *
  * 示例 1:
  *
- * 输入: N = 10
- * 输出: 9
- * 示例 2:
+ * 输入: 121
+ * 输出: true
  *
- * 输入: N = 1234
- * 输出: 1234
+ * 示例 2:
+ * 输入: -121
+ * 输出: false
+ * 解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。
+ *
  * 示例 3:
+ * 输入: 10
+ * 输出: false
+ * 解释: 从右向左读, 为 01 。因此它不是一个回文数。
  *
- * 输入: N = 332
- * 输出: 299
- *
+ * 进阶:
+ * 你能不将整数转为字符串来解决这个问题吗？
  * ————————————————————————————————————————————————————————————————————————————
  * keyword:
  * 题解：
@@ -31,28 +33,34 @@ package org.alphacat.leetcode.solution.classic.integer;
  * 相关题目：
  * ————————————————————————————————————————————————————————————————————————————
  */
-public class No738_monotoneIncreasingDigits {
+public class No9_isPalindrome {
 
-    public int monotoneIncreasingDigits(int N) {
-        String num = String.valueOf(N);
-        char[] numChars = num.toCharArray();
-
-        int index = 0;
-
-        while (index + 1 < num.length() && numChars[index] <= numChars[index + 1]) {
-            ++index;
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        if ((x % 10) == 0 && x != 0) {
+            return false;
         }
 
-        while (index >= 0 && index + 1 < num.length() && numChars[index] > numChars[index + 1]) {
-            --numChars[index];
-            --index;
+        int postNum = 0;
+        while (x > postNum) {
+            postNum = postNum * 10 + x % 10;
+            x /= 10;
         }
+        return x == postNum || x == postNum / 10;
+    }
 
-        for (int i = index + 2; i < num.length(); i++) {
-            numChars[i] = '9';
+    public boolean isPalindrome_2(int x) {
+        String s = String.valueOf(x);
+        int i = 0, j = s.length() - 1;
+        while (i < j) {
+            if (s.charAt(i) != s.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
         }
-
-        num = String.valueOf(numChars);
-        return Integer.parseInt(num);
+        return true;
     }
 }

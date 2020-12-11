@@ -8,8 +8,11 @@ public class No189_rotate {
             return;
         }
         int n = nums.length;
+        if (n == 0) {
+            return;
+        }
         k %= n;
-        if (n == 0 || k == 0) {
+        if (k == 0) {
             return;
         }
         reverse(nums, 0, n - 1);

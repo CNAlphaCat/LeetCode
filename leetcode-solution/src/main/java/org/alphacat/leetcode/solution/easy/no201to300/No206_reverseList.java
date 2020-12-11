@@ -2,7 +2,7 @@ package org.alphacat.leetcode.solution.easy.no201to300;
 
 import org.alphacat.leetcode.datastructure.ListNode;
 
-public class No206 {
+public class No206_reverseList {
 
     public ListNode reverseList(ListNode head) {
         ListNode crrNode = head;
@@ -14,5 +14,16 @@ public class No206 {
             crrNode = nextNode;
         }
         return preNode;
+    }
+
+    public ListNode reverseList_recursive(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode nextNode = head.next;
+        ListNode p = reverseList(nextNode);
+        nextNode.next = head;
+        head.next = null;
+        return p;
     }
 }

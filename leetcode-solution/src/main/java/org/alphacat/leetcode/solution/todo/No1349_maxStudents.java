@@ -33,8 +33,12 @@ public class No1349_maxStudents {
     public int maxStudents(char[][] seats) {
         int m = seats.length;
         int n = seats[0].length;
+
+        // 所有可能的情况的穷举数量
         int statusSize = 1 << n;
         int[] valid = new int[m];
+
+        // 第一维表示每一行，第二维表示所有可穷举的情况
         int[][] dp = new int[m][statusSize];
 
         for (int i = 0; i < m; i++) {

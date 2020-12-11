@@ -2,7 +2,8 @@ package org.alphacat.leetcode.solution.easy.no101to200;
 
 import java.util.Stack;
 
-public class No155 {
+public class No155_MinStack {
+	
 	class MinStack {
 		Stack<Integer> s1;
 		Stack<Integer> s2;

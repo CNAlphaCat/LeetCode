@@ -6,27 +6,29 @@ import java.util.LinkedList;
 
 public class No98 {
 
-    private int preNum;
-    private LinkedList isFindFirstNum;
-
     public boolean isValidBST(TreeNode root) {
-        return inOrder(root);
+        return inOrder(root, null, null);
     }
 
-    private boolean inOrder(TreeNode node) {
+    private boolean inOrder(TreeNode node, Integer lower, Integer higher) {
         if (node == null) {
             return true;
         }
-        if (!inOrder(node.left)) {
+
+        int val = node.val;
+        if (lower != null && val <= lower) {
             return false;
         }
-        if (isFindFirstNum == null) {
-            isFindFirstNum = new LinkedList();
-            preNum = node.val;
-        } else if (node.val <= preNum) {
+        if (higher != null && val >= higher) {
             return false;
         }
-        preNum = node.val;
-        return inOrder(node.right);
+
+        if (!inOrder(node.left, lower, val)) {
+            return false;
+        }
+        if (!inOrder(node.right, val, higher)) {
+            return false;
+        }
+        return true;
     }
 }
